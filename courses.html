@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Курсы - Сенсорика</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h2>Сенсорика</h2>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="courses.html" class="active">Курсы</a></li>
+                    <li><a href="schedule.html">Расписание</a></li>
+                    <li><a href="reviews.html">Отзывы</a></li>
+                    <li><a href="about.html">О центре</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                    <li><a href="login.html" class="btn-login">Вход</a></li>
+                    <li><a href="register.html" class="btn-register">Регистрация</a></li>
+                    <li><a href="dashboard.html" class="btn-dashboard" id="dashboardLink" style="display:none;">Личный кабинет</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>  
+        </div>
+    </nav>
+
+    <!-- Курсы -->
+    <section class="courses" style="padding: 60px 0;">
+        <div class="container">
+            <h2 class="section-title">Все курсы</h2>
+            <div class="courses-grid" id="coursesGrid">
+                <!-- Курсы будут загружены через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Сенсорика</h3>
+                    <p>Профессиональное обучение программированию и разработке ПО</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="courses.html">Курсы</a></li>
+                        <li><a href="schedule.html">Расписание</a></li>
+                        <li><a href="about.html">О центре</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="reviews.html">Отзывы</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                        <li><a href="register.html">Регистрация</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Контакты</h4>
+                    <p>Email: info@sensorika.ru</p>
+                    <p>Телефон: +7 (999) 123-45-67</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Сенсорика. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Чат-виджет -->
+    <div class="chat-widget">
+        <button class="chat-button" id="chatButton">ЧАТ</button>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <span>Онлайн поддержка</span>
+                <button class="chat-close" id="chatClose">×</button>
+            </div>
+            <div class="chat-messages" id="chatMessages"></div>
+            <div class="chat-input-area">
+                <input type="text" id="chatInput" placeholder="Введите сообщение...">
+                <button id="chatSend">Отправить</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/courses.js"></script>
+</body>
+</html>

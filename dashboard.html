@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет - Сенсорика</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h2>Сенсорика</h2>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="courses.html">Курсы</a></li>
+                    <li><a href="schedule.html">Расписание</a></li>
+                    <li><a href="reviews.html">Отзывы</a></li>
+                    <li><a href="about.html">О центре</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                    <li><a href="login.html" class="btn-login" style="display:none;">Вход</a></li>
+                    <li><a href="register.html" class="btn-register" style="display:none;">Регистрация</a></li>
+                    <li><a href="dashboard.html" class="btn-dashboard active">Личный кабинет</a></li>
+                    <li><a href="#" onclick="logoutUser(); return false;" class="btn-login">Выход</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Личный кабинет -->
+    <section class="dashboard">
+        <div class="container">
+            <div class="dashboard-header">
+                <h2>Добро пожаловать, <span id="userName"></span>!</h2>
+                <p>Email: <span id="userEmail"></span></p>
+            </div>
+
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="coursesCount">0</div>
+                    <div class="stat-label">Мои курсы</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="completedCount">0</div>
+                    <div class="stat-label">Завершено</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="paymentsCount">0</div>
+                    <div class="stat-label">Платежей</div>
+                </div>
+            </div>
+
+            <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: var(--shadow); margin-bottom: 2rem;">
+                <h3 style="color: var(--secondary-color); margin-bottom: 1.5rem;">Мои курсы</h3>
+                <div id="userCourses">
+                    <p>У вас пока нет записанных курсов. <a href="courses.html" style="color: var(--primary-color);">Посмотреть доступные курсы</a></p>
+                </div>
+            </div>
+
+            <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: var(--shadow);">
+                <h3 style="color: var(--secondary-color); margin-bottom: 1.5rem;">История платежей</h3>
+                <div id="userPayments">
+                    <p style="color: var(--text-light);">Платежи отсутствуют</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Сенсорика</h3>
+                    <p>Профессиональное обучение программированию и разработке ПО</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="courses.html">Курсы</a></li>
+                        <li><a href="schedule.html">Расписание</a></li>
+                        <li><a href="about.html">О центре</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="reviews.html">Отзывы</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                        <li><a href="register.html">Регистрация</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Контакты</h4>
+                    <p>Email: info@sensorika.ru</p>
+                    <p>Телефон: +7 (999) 123-45-67</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Сенсорика. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Чат-виджет -->
+    <div class="chat-widget">
+        <button class="chat-button" id="chatButton">ЧАТ</button>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <span>Онлайн поддержка</span>
+                <button class="chat-close" id="chatClose">×</button>
+            </div>
+            <div class="chat-messages" id="chatMessages"></div>
+            <div class="chat-input-area">
+                <input type="text" id="chatInput" placeholder="Введите сообщение...">
+                <button id="chatSend">Отправить</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

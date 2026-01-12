@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация - Сенсорика</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h2>Сенсорика</h2>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="courses.html">Курсы</a></li>
+                    <li><a href="schedule.html">Расписание</a></li>
+                    <li><a href="reviews.html">Отзывы</a></li>
+                    <li><a href="about.html">О центре</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                    <li><a href="login.html" class="btn-login">Вход</a></li>
+                    <li><a href="register.html" class="btn-register active">Регистрация</a></li>
+                    <li><a href="dashboard.html" class="btn-dashboard" id="dashboardLink" style="display:none;">Личный кабинет</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Форма регистрации -->
+    <section style="padding: 60px 0; min-height: 60vh;">
+        <div class="container">
+            <div class="form-container">
+                <h2 style="text-align: center; margin-bottom: 1.5rem; color: var(--secondary-color);">Регистрация</h2>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerName">Имя *</label>
+                        <input type="text" id="registerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email *</label>
+                        <input type="email" id="registerEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Пароль *</label>
+                        <input type="password" id="registerPassword" required minlength="6">
+                        <small style="color: var(--text-light); font-size: 0.9rem;">Минимум 6 символов</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPasswordConfirm">Подтвердите пароль *</label>
+                        <input type="password" id="registerPasswordConfirm" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Зарегистрироваться</button>
+                    <div id="registerMessage" style="margin-top: 1rem;"></div>
+                    <div style="text-align: center; margin-top: 1rem;">
+                        <p>Уже есть аккаунт? <a href="login.html" style="color: var(--primary-color);">Войти</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Сенсорика</h3>
+                    <p>Профессиональное обучение программированию и разработке ПО</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="courses.html">Курсы</a></li>
+                        <li><a href="schedule.html">Расписание</a></li>
+                        <li><a href="about.html">О центре</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="reviews.html">Отзывы</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                        <li><a href="register.html">Регистрация</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Контакты</h4>
+                    <p>Email: info@sensorika.ru</p>
+                    <p>Телефон: +7 (999) 123-45-67</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Сенсорика. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Чат-виджет -->
+    <div class="chat-widget">
+        <button class="chat-button" id="chatButton">ЧАТ</button>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <span>Онлайн поддержка</span>
+                <button class="chat-close" id="chatClose">×</button>
+            </div>
+            <div class="chat-messages" id="chatMessages"></div>
+            <div class="chat-input-area">
+                <input type="text" id="chatInput" placeholder="Введите сообщение...">
+                <button id="chatSend">Отправить</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/register.js"></script>
+</body>
+</html>

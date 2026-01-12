@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель - Сенсорика</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h2>Админ-панель</h2>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">На сайт</a></li>
+                    <li><a href="#" onclick="logoutUser(); return false;" class="btn-login">Выход</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Админ-панель -->
+    <section class="admin-panel" style="padding: 40px 0;">
+        <div class="container">
+            <h1 style="text-align: center; margin-bottom: 2rem; color: var(--secondary-color);">Панель администратора</h1>
+            
+            <!-- Вкладки -->
+            <div class="admin-tabs">
+                <button class="tab-button active" onclick="showTab('dashboard')">Дашборд</button>
+                <button class="tab-button" onclick="showTab('students')">Студенты</button>
+                <button class="tab-button" onclick="showTab('teachers')">Преподаватели</button>
+                <button class="tab-button" onclick="showTab('courses')">Курсы</button>
+                <button class="tab-button" onclick="showTab('payments')">Оплаты</button>
+                <button class="tab-button" onclick="showTab('reviews')">Отзывы</button>
+                <button class="tab-button" onclick="showTab('contacts')">Обращения</button>
+            </div>
+
+            <!-- Дашборд -->
+            <div id="tab-dashboard" class="tab-content active">
+                <div class="admin-stats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalStudents">0</div>
+                        <div class="stat-label">Всего студентов</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalTeachers">0</div>
+                        <div class="stat-label">Преподавателей</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalCourses">0</div>
+                        <div class="stat-label">Курсов</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalRevenue">0 ₽</div>
+                        <div class="stat-label">Общая выручка</div>
+                    </div>
+                </div>
+                <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: var(--shadow); margin-top: 2rem;">
+                    <h3 style="color: var(--secondary-color); margin-bottom: 1.5rem;">Сводная информация</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h4 style="color: var(--text-light); margin-bottom: 0.5rem;">Активных студентов</h4>
+                            <p style="font-size: 1.5rem; font-weight: bold; color: var(--primary-color);" id="activeStudents">0</p>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--text-light); margin-bottom: 0.5rem;">Всего платежей</h4>
+                            <p style="font-size: 1.5rem; font-weight: bold; color: var(--success-color);" id="totalPayments">0</p>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--text-light); margin-bottom: 0.5rem;">Ожидающих оплаты</h4>
+                            <p style="font-size: 1.5rem; font-weight: bold; color: var(--accent-color);" id="pendingPayments">0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Студенты -->
+            <div id="tab-students" class="tab-content">
+                <div class="admin-header">
+                    <h2>Управление студентами</h2>
+                    <button class="btn btn-primary" onclick="showAddStudentModal()">Добавить студента</button>
+                </div>
+                <div class="admin-table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Имя</th>
+                                <th>Email</th>
+                                <th>Телефон</th>
+                                <th>Дата регистрации</th>
+                                <th>Курсов</th>
+                                <th>Оплат</th>
+                                <th>Сумма оплат</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentsTableBody">
+                            <!-- Загружается через JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Преподаватели -->
+            <div id="tab-teachers" class="tab-content">
+                <div class="admin-header">
+                    <h2>Управление преподавателями</h2>
+                    <button class="btn btn-primary" onclick="showAddTeacherModal()">Добавить преподавателя</button>
+                </div>
+                <div class="admin-table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Имя</th>
+                                <th>Специализация</th>
+                                <th>Опыт</th>
+                                <th>Курсы</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="teachersTableBody">
+                            <!-- Загружается через JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Курсы -->
+            <div id="tab-courses" class="tab-content">
+                <div class="admin-header">
+                    <h2>Управление курсами</h2>
+                    <button class="btn btn-primary" onclick="showAddCourseModal()">Добавить курс</button>
+                </div>
+                <div class="admin-table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Название</th>
+                                <th>Цена</th>
+                                <th>Длительность</th>
+                                <th>Преподаватель</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="coursesTableBody">
+                            <!-- Загружается через JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Оплаты -->
+            <div id="tab-payments" class="tab-content">
+                <div class="admin-header">
+                    <h2>Управление оплатами</h2>
+                </div>
+                <div class="admin-table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Студент</th>
+                                <th>Email</th>
+                                <th>Курс</th>
+                                <th>Сумма</th>
+                                <th>Дата</th>
+                                <th>Метод оплаты</th>
+                                <th>Статус</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="paymentsTableBody">
+                            <!-- Загружается через JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Отзывы -->
+            <div id="tab-reviews" class="tab-content">
+                <div class="admin-header">
+                    <h2>Управление отзывами</h2>
+                </div>
+                <div class="admin-table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Имя</th>
+                                <th>Курс</th>
+                                <th>Рейтинг</th>
+                                <th>Текст</th>
+                                <th>Дата</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reviewsTableBody">
+                            <!-- Загружается через JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Обращения -->
+            <div id="tab-contacts" class="tab-content">
+                <div class="admin-header">
+                    <h2>Обращения пользователей</h2>
+                </div>
+                <div class="admin-table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Имя</th>
+                                <th>Email</th>
+                                <th>Тема</th>
+                                <th>Сообщение</th>
+                                <th>Дата</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="contactsTableBody">
+                            <!-- Загружается через JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Модальные окна -->
+    <!-- Модальное окно добавления студента -->
+    <div id="studentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('studentModal')">&times;</span>
+            <h2 id="studentModalTitle">Добавить студента</h2>
+            <form id="studentForm">
+                <input type="hidden" id="studentId">
+                <div class="form-group">
+                    <label>Имя *</label>
+                    <input type="text" id="studentName" required>
+                </div>
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" id="studentEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Пароль *</label>
+                    <input type="password" id="studentPassword" required>
+                </div>
+                <div class="form-group">
+                    <label>Телефон</label>
+                    <input type="tel" id="studentPhone" placeholder="+7 (999) 123-45-67">
+                </div>
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Модальное окно добавления преподавателя -->
+    <div id="teacherModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('teacherModal')">&times;</span>
+            <h2 id="teacherModalTitle">Добавить преподавателя</h2>
+            <form id="teacherForm">
+                <input type="hidden" id="teacherId">
+                <div class="form-group">
+                    <label>Имя *</label>
+                    <input type="text" id="teacherName" required>
+                </div>
+                <div class="form-group">
+                    <label>Специализация *</label>
+                    <input type="text" id="teacherSpecialization" required>
+                </div>
+                <div class="form-group">
+                    <label>Опыт (лет) *</label>
+                    <input type="number" id="teacherExperience" required min="0">
+                </div>
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Модальное окно добавления курса -->
+    <div id="courseModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('courseModal')">&times;</span>
+            <h2 id="courseModalTitle">Добавить курс</h2>
+            <form id="courseForm">
+                <input type="hidden" id="courseIdModal">
+                <div class="form-group">
+                    <label>Название *</label>
+                    <input type="text" id="courseNameModal" required>
+                </div>
+                <div class="form-group">
+                    <label>Описание *</label>
+                    <textarea id="courseDescriptionModal" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Цена (₽) *</label>
+                    <input type="number" id="coursePriceModal" required min="0">
+                </div>
+                <div class="form-group">
+                    <label>Длительность *</label>
+                    <input type="text" id="courseDurationModal" required>
+                </div>
+                <div class="form-group">
+                    <label>Иконка (аббревиатура)</label>
+                    <input type="text" id="courseIconModal" placeholder="ABC">
+                </div>
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/init-data.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
